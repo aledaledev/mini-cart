@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Button, Card } from "react-bootstrap";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { formatCurrency } from "../utilities/formatCurrency";

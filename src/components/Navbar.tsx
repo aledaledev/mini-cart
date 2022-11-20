@@ -1,10 +1,14 @@
 import { Button, Container, Nav, Navbar as NavbarBs } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { BsCart4 } from "react-icons/bs";
+import { useShoppingCart } from "../context/ShoppingCartContext";
 
 export function Navbar() {
+
+  const { toggleCart, cartQuantity } = useShoppingCart()
+
   return (
-    <NavbarBs sticky="top" className="bg-white shadow-sm sb-3">
+    <NavbarBs sticky="top" className="bg-white shadow-sm sb-3 relative">
       <Container>
         <Nav className="me-auto">
           <Nav.Link to="/" as={NavLink}>
@@ -21,9 +25,10 @@ export function Navbar() {
           style={{ width: "3rem", height: "3rem", position: "relative" }}
           variant="outline-primary"
           className="rounded-circle"
+          onClick={() => toggleCart()}
         >
           <BsCart4 className="fs-4" />
-          <div
+          {cartQuantity>0?<div
             className="rounded-circle bg-danger d-flex justify-content-center align-items-center"
             style={{
               color: "white",
@@ -35,8 +40,8 @@ export function Navbar() {
               transform:"translate(25%,15%)"
             }}
           >
-            12
-          </div>
+            {cartQuantity}
+          </div>:null}
         </Button>
       </Container>
     </NavbarBs>
